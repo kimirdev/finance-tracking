@@ -2,17 +2,25 @@ import { useExpensesQuery } from '@/entities/expense/hooks/useExpensesQuery';
 import { useProfileStore } from '@/entities/profile/store';
 import { aggregateExpensesByCategory } from '../lib';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Skeleton } from '@/shared/ui/skeleton'; // Assuming Skeleton component is available
+import { Skeleton } from '@/shared/ui/skeleton';
+import { useQuery } from '@tanstack/react-query';
+import { getCategories, useCategoryColorMap } from '@/entities/category';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A280F0', '#E83A3A', '#36A2EB', '#FF6384'];
+// No longer need a hardcoded COLORS array
+// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A280F0', '#E83A3A', '#36A2EB', '#FF6384'];
 
 export function ExpenseStatsByCategoryWidget() {
   const profileId = useProfileStore(s => s.currentProfileId);
+
+  const { categoryColorMap, isLoading: isLoadingCategories } = useCategoryColorMap();
+
   // Fetch expenses using the hook
-  const { data: expenses = [], isLoading } = useExpensesQuery(profileId);
+  const { data: expenses = [], isLoading: isLoadingExpenses } = useExpensesQuery(profileId);
 
   // Aggregate data for the chart
   const aggregatedData = aggregateExpensesByCategory(expenses);
+
+  const isLoading = isLoadingCategories || isLoadingExpenses; // Consider both data sources loading
 
   if (isLoading) {
     return <Skeleton className="w-full h-64" />; // Show skeleton while loading
@@ -37,11 +45,12 @@ export function ExpenseStatsByCategoryWidget() {
             nameKey="name"
             label
           >
-            {aggregatedData.map((_entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            {aggregatedData.map((entry, index) => (
+              // Use color from the fetched categories, fallback to a default if not found
+              <Cell key={`cell-${index}`} fill={categoryColorMap[entry.name] || '#C9CBCF'} />
             ))}
           </Pie>
-          <Tooltip formatter={(value: any) => [`${Number(value).toFixed(2)}`, "Amount"]} />
+          <Tooltip formatter={(value: any, name) => [`${Number(value).toFixed(2)}`, name]} /> {/* name is already category name */}
           <Legend />
         </PieChart>
       </ResponsiveContainer>

@@ -9,8 +9,8 @@ import { useProfileStore } from '@/entities/profile/store';
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-const categories = ['Food', 'Transport', 'Shopping', 'Bills', 'Other'];
+import { useQuery } from '@tanstack/react-query';
+import { getCategories } from '@/entities/category';
 
 // Define the Zod schema for your form data
 const addExpenseFormSchema = z.object({
@@ -28,6 +28,12 @@ export function AddExpenseDialog() {
   const [open, setOpen] = useState(false);
   const profileId = useProfileStore(s => s.currentProfileId);
   const mutation = useAddExpenseMutation(profileId);
+
+  // Fetch categories using react-query
+  const { data: categories = [], isLoading: isLoadingCategories } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategories,
+  });
 
   // Use zodResolver with your schema
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm<AddExpenseFormData>({
@@ -83,13 +89,13 @@ export function AddExpenseDialog() {
             name="category"
             control={control}
             render={({ field }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
+              <Select onValueChange={field.onChange} value={field.value} disabled={isLoadingCategories}>
                 <SelectTrigger id="category">
-                  <SelectValue placeholder="Select category" />
+                  <SelectValue placeholder={isLoadingCategories ? "Loading categories..." : "Select category"} />
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map(cat => (
-                    <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                    <SelectItem key={cat.id} value={cat.name}>{cat.name}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -114,7 +120,7 @@ export function AddExpenseDialog() {
           <Input id="comment" {...register('comment')} />
           {/* No error message for comment as it's optional */}
         </div>
-        <Button type="submit" className="w-full" disabled={mutation.isPending}>
+        <Button type="submit" className="w-full" disabled={mutation.isPending || isLoadingCategories}>
           {mutation.isPending ? 'Adding...' : 'Add'}
         </Button>
       </form>
