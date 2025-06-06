@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from '@/pages/MainPage';
-import AboutPage from '@/pages/AboutPage';
+import ProfilePage from '@/pages/ProfilePage';
 import MainLayout from './layouts/MainLayout';
 import '../app/index.css';
 
@@ -10,7 +10,7 @@ export default function App() {
       <MainLayout>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
