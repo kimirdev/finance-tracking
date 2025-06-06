@@ -1,9 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User } from 'lucide-react';
+import { Home, User, BarChart } from 'lucide-react';
 
 const nav = [
   { to: '/', icon: Home, label: 'Main' },
   { to: '/profile', icon: User, label: 'Profile' },
+  { to: '/stats', icon: BarChart, label: 'Stats' },
 ];
 
 export default function BottomNavBar() {
@@ -20,6 +21,7 @@ export default function BottomNavBar() {
             className={`flex flex-col items-center gap-1 text-xs ${active ? 'text-primary' : 'text-muted-foreground'}`}
           >
             <Icon size={24} />
+            {label}
           </Link>
         );
       })}

@@ -17,7 +17,14 @@ function simulateDelay<T>(result: T, ms = 300): Promise<T> {
 }
 
 export async function getExpenses(profileId: string): Promise<Expense[]> {
-  return simulateDelay(getStoredExpenses().filter(e => e.profileId === profileId));
+  const expenses = getStoredExpenses().filter(e => e.profileId === profileId);
+  // Sort expenses by date descending (latest first)
+  expenses.sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateB - dateA; // Sort descending
+  });
+  return simulateDelay(expenses);
 }
 
 export async function getExpenseById(profileId: string, id: string): Promise<Expense | undefined> {
