@@ -1,4 +1,3 @@
-import React from 'react';
 import { ExpenseStatsByCategoryWidget } from '@/widgets/expense-stats-by-category';
 import { ExpenseTimeSeriesBarChartWidget } from '@/widgets/expense-time-series-bar-chart';
 import { SelectExpensesPeriod } from '@/features/expense/select-expenses-period';

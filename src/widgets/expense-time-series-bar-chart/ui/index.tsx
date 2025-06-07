@@ -1,22 +1,10 @@
 import { useExpensesQuery } from '@/entities/expense/hooks/useExpensesQuery';
 import { useProfileStore } from '@/entities/profile/store';
-import { useExpensesFilterStore } from '@/entities/expense/store'; // To get the selected period
+import { useExpensesFilterStore } from '@/entities/expense/store';
 import { aggregateExpensesForTimeSeriesBarChart } from '../lib';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Skeleton } from '@/shared/ui/skeleton';
-import { useQuery } from '@tanstack/react-query'; // Import useQuery
-import { getCategories, useCategoryColorMap } from '@/entities/category'; // Import getCategories
-
-// No longer need a hardcoded CATEGORY_COLORS object
-// const CATEGORY_COLORS: Record<string, string> = {
-//   'Food': '#FF6384',
-//   'Transport': '#36A2EB',
-//   'Shopping': '#FFCE56',
-//   'Bills': '#4BC0C0',
-//   'Entertainment': '#9966CC',
-//   'Utilities': '#FF9F40',
-//   'Other': '#C9CBCF',
-// };
+import { useCategoryColorMap } from '@/entities/category';
 
 export function ExpenseTimeSeriesBarChartWidget() {
   const profileId = useProfileStore(s => s.currentProfileId);

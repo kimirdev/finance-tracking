@@ -8,13 +8,11 @@ import { Input } from '@/shared/ui/input';
 export function ProfileGuard({ children }: { children: React.ReactNode }) {
   const currentProfileId = useProfileStore(s => s.currentProfileId);
   const setCurrentProfileId = useProfileStore(s => s.setCurrentProfileId);
-  const [profiles, setProfiles] = useState<{ id: string; name: string }[]>([]);
   const [showDialog, setShowDialog] = useState(false);
   const [newName, setNewName] = useState('');
 
   useEffect(() => {
     getProfiles().then(profs => {
-      setProfiles(profs);
       if (!currentProfileId) {
         if (profs.length > 0) {
           setCurrentProfileId(profs[0].id);
@@ -30,7 +28,6 @@ export function ProfileGuard({ children }: { children: React.ReactNode }) {
     e.preventDefault();
     if (!newName) return;
     const profile = await createProfile(newName);
-    setProfiles(await getProfiles());
     setCurrentProfileId(profile.id);
     setShowDialog(false);
     setNewName('');

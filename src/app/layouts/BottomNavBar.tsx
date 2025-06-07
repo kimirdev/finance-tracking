@@ -3,8 +3,8 @@ import { Home, User, BarChart } from 'lucide-react';
 
 const nav = [
   { to: '/', icon: Home, label: 'Main' },
-  { to: '/profile', icon: User, label: 'Profile' },
   { to: '/stats', icon: BarChart, label: 'Stats' },
+  { to: '/profile', icon: User, label: 'Profile' },
 ];
 
 export default function BottomNavBar() {

@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import { getCategories } from '../api';
+import type { Category } from '../model'; // Import Category type
 
 interface CategoryColorMapResult {
   categoryColorMap: Record<string, string>;
   isLoading: boolean;
+  isError: boolean; // Add isError
+  error: unknown; // Add error
+  isSuccess: boolean; // Add isSuccess
 }
 
 export function useCategoryColorMap(): CategoryColorMapResult {
-  const { data: categories = [], isLoading } = useQuery({
+  const { data: categories = [], isLoading, isError, error, isSuccess } = useQuery<Category[], Error>({
     queryKey: ['categories'],
     queryFn: getCategories,
   });
@@ -20,5 +24,8 @@ export function useCategoryColorMap(): CategoryColorMapResult {
   return {
     categoryColorMap,
     isLoading,
+    isError, // Return isError
+    error, // Return error
+    isSuccess, // Return isSuccess
   };
 } 

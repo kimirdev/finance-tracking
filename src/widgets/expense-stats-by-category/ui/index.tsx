@@ -3,11 +3,7 @@ import { useProfileStore } from '@/entities/profile/store';
 import { aggregateExpensesByCategory } from '../lib';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Skeleton } from '@/shared/ui/skeleton';
-import { useQuery } from '@tanstack/react-query';
-import { getCategories, useCategoryColorMap } from '@/entities/category';
-
-// No longer need a hardcoded COLORS array
-// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A280F0', '#E83A3A', '#36A2EB', '#FF6384'];
+import { useCategoryColorMap } from '@/entities/category';
 
 export function ExpenseStatsByCategoryWidget() {
   const profileId = useProfileStore(s => s.currentProfileId);

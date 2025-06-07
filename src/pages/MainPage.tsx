@@ -4,8 +4,6 @@ import { useExpensesQuery } from '@/entities/expense/hooks/useExpensesQuery';
 import { useExpensesFilterStore } from '@/entities/expense/store';
 import type { ExpensesPeriod } from '@/entities/expense/store';
 import { AddExpenseDialog, SelectExpensesPeriod } from '@/features/expense';
-import { useQuery } from '@tanstack/react-query';
-import { getCategories } from '@/entities/category';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { useCategoryColorMap } from '@/entities/category';
 
