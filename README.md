@@ -1,54 +1,102 @@
-# React + TypeScript + Vite
+# Finance Tracking Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Finance Tracking Application! This project is a personal finance management tool designed to help users track their expenses across different profiles, analyze spending habits, and manage their financial data locally.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Multi-Profile Support**: Create and switch between multiple user profiles, each with its own independent expense data.
+-   **Expense Management**: Add, view, edit, and delete expenses with details like title, amount, category, date, and comments.
+-   **Expense Filtering**: Filter expenses by predefined periods (last day, week, month, year, all time).
+-   **Statistical Overview**: View expense statistics, categorized for better insights (e.g., by category).
+-   **Local Storage Backend**: Utilizes browser's `localStorage` as a "fake backend" for persistent data storage, allowing for easy transition to a real backend later.
+-   **Responsive Design**: Adapts to different screen sizes, providing a seamless experience on both desktop and mobile.
+-   **Form Validation**: Robust form validation powered by `react-hook-form` and `Zod`.
+-   **Theme Switching**: Dark and light theme support.
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-   **React 19**: A JavaScript library for building user interfaces.
+-   **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
+-   **Vite**: A fast build tool that provides a lightning-fast development experience.
+-   **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+-   **Shadcn/ui**: Reusable components built with Tailwind CSS and Radix UI.
+-   **Zustand**: A small, fast, and scalable bearbones state-management solution.
+-   **TanStack Query (React Query)**: Powerful asynchronous state management for fetching, caching, and updating data.
+-   **React Hook Form**: Performant, flexible and extensible forms with easy-to-use validation.
+-   **Zod**: A TypeScript-first schema declaration and validation library.
+-   **Recharts**: A composable charting library built with React and D3.
+-   **Vitest**: A blazing fast unit test framework powered by Vite.
+-   **@testing-library/react**: Utilities for testing React components.
+-   **Framer Motion**: A production-ready motion library for React (implicitly used by `vaul`).
+-   **Sonner**: An opinionated toast component for React.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📁 Project Structure (Feature-Sliced Design)
+
+This project follows the [Feature-Sliced Design (FSD)](https://feature-sliced.design/) methodology for scalable and maintainable architecture. Key layers include:
+
+-   `app/`: Application-level logic, routing, and providers.
+-   `pages/`: Application pages.
+-   `widgets/`: Independent, reusable UI blocks that combine features and entities.
+-   `features/`: Implementations of user stories, containing logic and UI specific to a feature.
+-   `entities/`: Domain-specific business logic and data models (e.g., `expense`, `profile`).
+-   `shared/`: Reusable utilities, UI components, and libraries used across the application.
+
+## 🚀 Getting Started
+
+To get this project up and running on your local machine, follow these steps:
+
+### Prerequisites
+
+Ensure you have Node.js and npm (or yarn/pnpm) installed.
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone <your-repository-url>
+    cd finance-tracking
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    # or yarn install
+    # or pnpm install
+    ```
+
+### Running the Development Server
+
+```bash
+npm run dev
+# or yarn dev
+# or pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will start the development server, and the application will be accessible at `http://localhost:5173` (or another port if 5173 is in use).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Building for Production
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run build
+# or yarn build
+# or pnpm build
 ```
+
+This will build the application for production in the `dist` directory.
+
+## ✅ Running Tests
+
+This project uses [Vitest](https://vitest.dev/) for unit and integration testing. Ensure your `vitest.config.ts` and `tsconfig.json` are correctly configured for path aliases (`@/`).
+
+To run all tests once:
+
+```bash
+npm test
+```
+
+To run tests in watch mode (re-runs tests on file changes):
+
+```bash
+npm run test:watch
+```
+
+Feel free to contribute or suggest improvements!
