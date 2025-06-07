@@ -83,7 +83,7 @@ This will build the application for production in the `dist` directory.
 
 ## ✅ Running Tests
 
-This project uses [Vitest](https://vitest.dev/) for unit and integration testing. Ensure your `vitest.config.ts` and `tsconfig.json` are correctly configured for path aliases (`@/`).
+This project uses [Vitest](https://vitest.dev/) for unit and integration testing.
 
 To run all tests once:
 
@@ -96,5 +96,3 @@ To run tests in watch mode (re-runs tests on file changes):
 ```bash
 npm run test:watch
 ```
-
-Feel free to contribute or suggest improvements!
