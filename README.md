@@ -1,6 +1,6 @@
-# Finance Tracking Application
+# Finance Tracking
 
-Welcome to the Finance Tracking Application! This project is a personal finance management tool designed to help users track their expenses across different profiles, analyze spending habits, and manage their financial data locally.
+This is my pet project that I created to practice and expand my skills with various technologies. I've combined familiar tools from my professional experience with new technologies I wanted to learn. The project serves as both a practical finance tracking application and a learning platform for modern web development practices.
 
 ## ✨ Features
 
@@ -12,6 +12,17 @@ Welcome to the Finance Tracking Application! This project is a personal finance 
 -   **Responsive Design**: Adapts to different screen sizes, providing a seamless experience on both desktop and mobile.
 -   **Form Validation**: Robust form validation powered by `react-hook-form` and `Zod`.
 -   **Theme Switching**: Dark and light theme support.
+
+## 📁 Project Structure (Feature-Sliced Design)
+
+This project follows the [Feature-Sliced Design (FSD)](https://feature-sliced.design/) methodology for scalable and maintainable architecture. Key layers include:
+
+-   `app/`: Application-level logic, routing, and providers.
+-   `pages/`: Application pages.
+-   `widgets/`: Independent, reusable UI blocks that combine features and entities.
+-   `features/`: Implementations of user stories, containing logic and UI specific to a feature.
+-   `entities/`: Domain-specific business logic and data models (e.g., `expense`, `profile`).
+-   `shared/`: Reusable utilities, UI components, and libraries used across the application.
 
 ## 🛠️ Technologies Used
 
@@ -27,19 +38,6 @@ Welcome to the Finance Tracking Application! This project is a personal finance 
 -   **Recharts**: A composable charting library built with React and D3.
 -   **Vitest**: A blazing fast unit test framework powered by Vite.
 -   **@testing-library/react**: Utilities for testing React components.
--   **Framer Motion**: A production-ready motion library for React (implicitly used by `vaul`).
--   **Sonner**: An opinionated toast component for React.
-
-## 📁 Project Structure (Feature-Sliced Design)
-
-This project follows the [Feature-Sliced Design (FSD)](https://feature-sliced.design/) methodology for scalable and maintainable architecture. Key layers include:
-
--   `app/`: Application-level logic, routing, and providers.
--   `pages/`: Application pages.
--   `widgets/`: Independent, reusable UI blocks that combine features and entities.
--   `features/`: Implementations of user stories, containing logic and UI specific to a feature.
--   `entities/`: Domain-specific business logic and data models (e.g., `expense`, `profile`).
--   `shared/`: Reusable utilities, UI components, and libraries used across the application.
 
 ## 🚀 Getting Started
 
@@ -53,7 +51,7 @@ Ensure you have Node.js and npm (or yarn/pnpm) installed.
 
 1.  Clone the repository:
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/kimirdev/finance-tracking.git
     cd finance-tracking
     ```
 2.  Install dependencies:
